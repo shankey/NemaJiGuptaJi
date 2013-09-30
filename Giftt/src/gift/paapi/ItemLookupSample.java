@@ -28,7 +28,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /*
  * This class shows how to make a simple authenticated ItemLookup call to the
@@ -90,22 +92,22 @@ public class ItemLookupSample {
         /*
          * Here is an example in map form, where the request parameters are stored in a map.
          */
-        System.out.println("Map form example:");
+        /*System.out.println("Map form example:");
         Map<String, String> params = new HashMap<String, String>();
         params.put("Service", "AWSECommerceService");
         params.put("Version", "2011-08-01");
         params.put("Operation", "ItemLookup");
         params.put("ItemId", ITEM_ID);
         params.put("ResponseGroup", "Small");
-        params.put("AssociateTag", "taga");
+        params.put("AssociateTag", "taga");*/
         
 
-        requestUrl = helper.sign(params);
+        /*requestUrl = helper.sign(params);
         System.out.println("Signed Request is \"" + requestUrl + "\"");
 
         title = fetchTitle(requestUrl);
         System.out.println("Signed Title is \"" + title + "\"");
-        System.out.println();
+        System.out.println();*/
 
         /* Here is an example with string form, where the requests parameters have already been concatenated
          * into a query string. */
@@ -114,9 +116,8 @@ public class ItemLookupSample {
         requestUrl = helper.sign(queryString);
         System.out.println("Request is \"" + requestUrl + "\"");
 
-        title = fetchTitle(requestUrl);
-        System.out.println("Title is \"" + title + "\"");
-        System.out.println();
+        title = parseXML(requestUrl);
+        
 
     }
 
@@ -124,18 +125,48 @@ public class ItemLookupSample {
      * Utility function to fetch the response from the service and extract the
      * title from the XML.
      */
-    private static String fetchTitle(String requestUrl) {
+    private static String parseXML(String requestUrl) {
         String title = null;
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(requestUrl);
-            Node titleNode = doc.getElementsByTagName("Title").item(0);
-            title = titleNode.getTextContent();
+            
+            NodeList nodeList = doc.getChildNodes();
+            
+            Node item = nodeList.item(0).getChildNodes().item(1).getChildNodes().item(1);
+            NodeList itemNodes = item.getChildNodes();
+            String detailPageURL = itemNodes.item(1).getTextContent();
+            System.out.println(detailPageURL);
+            String imgURL = itemNodes.item(5).getChildNodes().item(0).getTextContent();
+            System.out.println(imgURL);
+            
+            String productTitle = itemNodes.item(7).getChildNodes().item(18).getTextContent();
+            
+            Node offer = itemNodes.item(8);
+            NodeList offerList = offer.getChildNodes();
+            
+            String price = offerList.item(0).getChildNodes().item(2).getTextContent();
+            System.out.println(price);
+            
+            
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new RuntimeException(e);
         }
         return title;
     }
+    
+    public static void recurse(NodeList root){
+    	System.out.println(root.getLength());
+    	
+    	for(int i=0; i<root.getLength() ; i++){
+    		System.out.println(root.item(i).getNodeName() + "-->" +root.item(i).getTextContent() + ":-->" + root.item(i).getNodeType());
+    		recurse(root.item(i).getChildNodes());
+    	}
+    	
+    }
+    
+    
 
 }
