@@ -3,7 +3,7 @@ package gift.factory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import gift.model.City;
+import gift.model.GiftCategory;
 
 
 public class HibernateUtil {
@@ -15,7 +15,7 @@ public class HibernateUtil {
 			sessionFactory = new AnnotationConfiguration()
 								.configure()
 								.addPackage("gift.model") //the fully qualified package name
-								.addAnnotatedClass(City.class)
+								.addAnnotatedClass(GiftCategory.class)
 								.buildSessionFactory();
 
 		} catch (Throwable ex) {

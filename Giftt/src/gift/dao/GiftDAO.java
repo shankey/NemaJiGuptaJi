@@ -1,7 +1,6 @@
 package gift.dao;
 
 import gift.factory.HibernateUtil;
-import gift.model.City;
 import gift.model.GiftCategory;
 
 import java.util.List;

@@ -5,12 +5,12 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">test</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/gift</property>
-        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Test123#</property>
+        <property name="hibernate.connection.url">jdbc:mysql://ec2-54-245-45-137.us-west-2.compute.amazonaws.com:3306/gift</property>
+        <property name="hibernate.connection.username">myuser</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     	<property name="connection.pool_size">1</property>
     	<property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">validate</property>
     </session-factory>
 </hibernate-configuration>
