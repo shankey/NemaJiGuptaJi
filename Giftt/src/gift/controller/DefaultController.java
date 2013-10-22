@@ -1,6 +1,8 @@
 package gift.controller;
  
+import gift.bao.CategoryDetailBAO;
 import gift.dao.GiftDAO;
+import gift.model.GiftAsinDetail;
 import gift.model.GiftCategory;
 
 import java.util.List;
@@ -18,13 +20,10 @@ public class DefaultController {
     return "hello";
   }
  
-  @RequestMapping(value = "/hello")
+  @RequestMapping(value = "/detailpage")
   public ModelAndView hello() {
-		
-		GiftDAO giftDAO = new GiftDAO();
-		List<GiftCategory> li = giftDAO.getGiftCategory(null, null, null, "M", null, null);
-		System.out.println(li);
-    return new ModelAndView("hello");
+	new CategoryDetailBAO().execute();
+    return new ModelAndView("detailpage");
     
   }
  

@@ -1,5 +1,7 @@
 package gift.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,10 @@ public class GiftCategory {
 	String occasion;
 	
 	String relation;
+	
+	Float price;
+	
+	private Date timeStamp;
 
 	@Id
 	@GeneratedValue
@@ -78,10 +84,25 @@ public class GiftCategory {
 		this.relation = relation;
 	}
 	
+	@Column(name="PRICE")
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+	
+	@Column(name="UPDATED_TIME")
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
 	public String toString(){
 		return asin + " " + age + " " + gender + " "+ occasion + " " + relation;
 	}
-	
-	
-
 }

@@ -19,4 +19,10 @@
     <servlet-name>springDispatcher</servlet-name>
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>StartUpServlet</servlet-name>
+    <servlet-class>gift.paapi.StartUpServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet> 
 </web-app>
