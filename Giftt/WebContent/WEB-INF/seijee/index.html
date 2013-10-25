@@ -9,66 +9,7 @@
 
     <!-- Le styles -->
     <link href="./assets/css1/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-      @media (max-width: 980px) {
-			/* Enable use of floated navbar text */
-			.navbar-text.pull-right {
-				float: none;
-				padding-left: 5px;
-				padding-right: 5px;
-			}
-		}
-		
-		.square{
-			width:100%;
-			display: inline-block;
-			position:relative;
-		}
-		.square:after {
-			padding-top: 100%; /*16:9 ratio*/
-			display: block;
-			content: '';
-		}
-		.inner{
-			position:absolute;
-			top: 5%; bottom: 20%; right: 0; left: 0; /*fill parent*/
-			/*background-color: rgb(0, 162, 232);*/
-			padding:3%;
-			/*I wanted it to look good :)*/
-			font-family: 'Arial', Helvetica, Sans-Serif;
-			
-		}
-		.thumbnail:hover{
-			border: 1px solid rgb(0, 162, 232);
-		}
-		.navbar-inverse .navbar-inner{
-			background-image:url('http://wallpoper.com/images/00/43/41/48/green-lines-texture_00434148.jpg');
-			background-size:cover;
-			*http://versporttvonline.com/wp-content/uploads/2013/05/Colorful-texture-by-wyeko-on-deviantart.jpg
-			*http://1.bp.blogspot.com/-Ra02xeZeGbo/TndRlPS9U5I/AAAAAAAAAFk/6-OdtXtet2Q/s400/01123_regalblue_1600x1200.jpg
-			*http://wallpoper.com/images/00/43/41/48/green-lines-texture_00434148.jpg //green
-		}
-		
-		.navbar-inverse .brand,
-			.navbar-inverse .nav > li > a {
-			color: #cccccc;
-			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-		}
-		
-		.navbar a {
-			cursor: pointer;
-		}
-    </style>
-	
-    <link href="./assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./assets/css1/custom.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -84,8 +25,8 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+	<!-- navbar to be used on everypage!!-->
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -95,79 +36,9 @@
           </button>
           <a class="brand" href="#">theGifts.com</a>
           <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
-            </p>
             <ul class="nav">
-				
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle js-activated" data-toggle="Men">Men</a>
-					<ul class="dropdown-menu span5">
-					
-						<div class="row-fluid" style="padding:15px;">
-							<div class="span4">
-								<a>Birthday</a><br/>
-								<a>Wedding</a><br/>
-								<a>Anniversary</a><br/>
-								<a>New Job</a><br/>
-								<a>etc</a>
-							</div>
-							<div  class="span4">
-								something
-							</div>
-							<div class="span4">
-								something
-							</div>
-						</div>
-						
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle js-activated" data-toggle="Women">Women</a>
-					<ul class="dropdown-menu span5">
-					
-						<div class="row-fluid" style="padding:15px;">
-							<div class="span4">
-								<a>Birthday</a><br/>
-								<a>Wedding</a><br/>
-								<a>Anniversary</a><br/>
-								<a>New Job</a><br/>
-								<a>etc</a>
-							</div>
-							<div  class="span4">
-								something
-							</div>
-							<div class="span4">
-								something
-							</div>
-						</div>
-						
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle js-activated" data-toggle="Teens">Teens</a>
-					<ul class="dropdown-menu span5">
-					
-						<div class="row-fluid" style="padding:15px;">
-							<div class="span4">
-								<a>Birthday</a><br/>
-								<a>Wedding</a><br/>
-								<a>Anniversary</a><br/>
-								<a>New Job</a><br/>
-								<a>etc</a>
-							</div>
-							<div  class="span4">
-								something
-							</div>
-							<div class="span4">
-								something
-							</div>
-						</div>
-						
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle js-activated" data-toggle="Kids">Kids</a>
+					<a href="#" class="dropdown-toggle js-activated" data-toggle="Men"><strong>Men</strong></a>
 					<ul class="dropdown-menu span5">
 					
 						<div class="row-fluid" style="padding:15px;">
@@ -194,62 +65,212 @@
         </div>
       </div>
     </div>
-
 	
-	<ul class=" container-fluid thumbnails">
-	<li class="span3">
-		<div class="square thumbnail">
-			<div class="inner" style="background:url('http://imshopping.rediff.com/imgshop/600-600/shopping/pixs/14253/p/PE_11445444._perfect-gift-item-lord-ganesh-statue-11724.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
-				
-			</div>
-			<div style="position:absolute; bottom:0;" >
-			<p class="pull-left">Product Name<small> (price)</small></p>
-			</div>
+	<!--> Carousal <-->
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+		<div class="active item">
+			<h1>The Gifts.com</h1>
+			<h4>slide1</h4>
 		</div>
-	</li>
-	<li class="span3">
-		<div class="square thumbnail">
-			<div class="inner" style="background:url('http://imshopping.rediff.com/imgshop/600-600/shopping/pixs/14253/p/PE_11445444._perfect-gift-item-lord-ganesh-statue-11724.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
-				
-			</div>
-			<div style="position:absolute; bottom:0;" >
-			<p class="pull-left">Product Name<small> (price)</small></p>
-			</div>
+		<div class="item">
+			<h1>The Gifts.com</h1>
+			<h4>slide2</h4>
 		</div>
-	</li>
-	<li class="span3">
-		<div class="square thumbnail">
-			<div class="inner" style="background:url('http://imshopping.rediff.com/imgshop/600-600/shopping/pixs/14253/p/PE_11445444._perfect-gift-item-lord-ganesh-statue-11724.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
-				
-			</div>
-			<div style="position:absolute; bottom:0;" >
-			<p class="pull-left">Product Name<small> (price)</small></p>
-			</div>
+		<div class="item">
+			<h1>The Gifts.com</h1>
+			<h4>slide3</h4>
 		</div>
-	</li>
-	<li class="span3">
-		<div class="square thumbnail">
-			<div class="inner" style="background:url('http://imshopping.rediff.com/imgshop/600-600/shopping/pixs/14253/p/PE_11445444._perfect-gift-item-lord-ganesh-statue-11724.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
-				
-			</div>
-			<div style="position:absolute; bottom:0;" >
-			<p class="pull-left">Product Name<small> (price)</small></p>
-			</div>
 		</div>
-	</li>
-	<li class="span3">
-		<div class="square thumbnail">
-			<div class="inner" style="background:url('http://imshopping.rediff.com/imgshop/600-600/shopping/pixs/14253/p/PE_11445444._perfect-gift-item-lord-ganesh-statue-11724.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
-				
-			</div>
-			<div style="position:absolute; bottom:0;" >
-			<p class="pull-left">Product Name<small> (price)</small></p>
-			</div>
-		</div>
-	</li>
+		<!-- Carousel nav -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
 	
-</ul>
-        <!--/span-->
+	
+	<!--> small shadowed thumbnails <-->
+	<div class="container-fluid" style="padding: 0px 20px;">
+		<ul class="row-fluid thumbnails">
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+			<li class="span2">
+				<div class="square thumbnail">
+					<div class="inner" style="background:url('./assets/img/h2.jpg');background-size:contain;background-position:center; background-repeat:no-repeat;">
+						
+					</div>
+					<div class="caption text-center">
+					<h4>Product Name<small> (price)</small></h4>
+					</div>
+				</div>
+			</li>
+		</ul>
+		
+	</div>
 
 
       <hr/>
@@ -260,9 +281,10 @@
 
     </div><!--/.fluid-container-->
 
-    <!-- Le javascript
-    ================================================== -->
+    <!-- Le javascript>
+    ================================================== 
     <!-- Placed at the end of the document so the pages load faster -->
+	
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap-transition.js"></script>
     <script src="./assets/js/bootstrap-alert.js"></script>
@@ -277,7 +299,6 @@
     <script src="./assets/js/bootstrap-carousel.js"></script>
     <script src="./assets/js/bootstrap-typeahead.js"></script>
     <script src="./assets/js/drophover.js"></script>
-
 	<script>
     $(document).ready(function() {
 		$('.js-activated').dropdownHover().dropdown();
