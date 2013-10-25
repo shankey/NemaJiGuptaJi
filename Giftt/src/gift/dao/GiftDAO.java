@@ -1,5 +1,6 @@
 package gift.dao;
 
+import gift.bao.CategoryDetailBAO;
 import gift.factory.HibernateUtil;
 import gift.model.GiftAsinDetail;
 import gift.model.GiftCategory;
@@ -8,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -16,6 +18,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 public class GiftDAO {
+	
+	private static Logger LOG = Logger.getLogger(GiftDAO.class);
 	
 	@SuppressWarnings("unchecked")
 	public List<GiftCategory> getGiftCategory(String asin, Integer startAge, Integer endAge,
@@ -53,7 +57,7 @@ public class GiftDAO {
 			
 			
 			List<GiftCategory> gc = cr.list();
-			System.out.println("gift category = "+gc);
+			LOG.info("gift category = "+gc);
 			
 
 			transaction.commit();
@@ -62,7 +66,7 @@ public class GiftDAO {
 			
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}
@@ -80,7 +84,7 @@ public class GiftDAO {
 			
 			if(time!=null){
 				cr.add(Restrictions.le("timeStamp", time));
-				cr.addOrder(Order.asc("timestamp"));
+				cr.addOrder(Order.asc("timeStamp"));
 				cr.setMaxResults(100);
 			}else{
 				return null;
@@ -88,7 +92,7 @@ public class GiftDAO {
 			
 			
 			List<GiftCategory> gc = cr.list();
-			System.out.println("gift category by time = "+gc);
+			LOG.info("gift category by time = "+gc);
 			
 			transaction.commit();
 			
@@ -96,7 +100,7 @@ public class GiftDAO {
 			
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}
@@ -114,7 +118,7 @@ public class GiftDAO {
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}
@@ -153,7 +157,7 @@ public class GiftDAO {
 			
 			
 			GiftAsinDetail gc = (GiftAsinDetail)cr.uniqueResult();
-			System.out.println("gift category = "+gc);
+			LOG.info("gift category = "+gc);
 			
 
 			transaction.commit();
@@ -162,7 +166,7 @@ public class GiftDAO {
 			
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}
@@ -181,7 +185,7 @@ public class GiftDAO {
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}
@@ -199,10 +203,10 @@ public class GiftDAO {
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
-			System.out.println();
+			
 		}
 		
 	}
@@ -219,7 +223,7 @@ public class GiftDAO {
 			cr.add(Restrictions.in("asin", asinList));
 			
 			List<GiftAsinDetail> gc = cr.list();
-			System.out.println("gift category = "+gc);
+			LOG.info("gift category = "+gc);
 			
 
 			transaction.commit();
@@ -228,7 +232,7 @@ public class GiftDAO {
 			
 		} catch (HibernateException e) {
 			transaction.rollback();
-			e.printStackTrace();
+			LOG.error(" ",e);
 		} finally {
 			session.close();
 		}

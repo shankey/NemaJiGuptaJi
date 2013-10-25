@@ -1,5 +1,6 @@
 package gift.bao;
 
+import gift.bean.DetailPageBean;
 import gift.dao.GiftDAO;
 import gift.model.GiftAsinDetail;
 import gift.model.GiftCategory;
@@ -9,17 +10,49 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
+
 public class CategoryDetailBAO {
 	
+	private static Logger LOG = Logger.getLogger(CategoryDetailBAO.class);
 	
-	public void execute(){
+	DetailPageBean bean;
+	
+	
+	public CategoryDetailBAO(DetailPageBean bean) {
+		this.bean = bean;
+	}
+
+	public void execute(ModelAndView mv){
 		GiftDAO giftDAO = new GiftDAO();
-		List<GiftCategory> li = giftDAO.getGiftCategory(null, null, null, "M", null, null, null, null);
-		System.out.println(li);
+		Integer age = bean.getAge();
+		Integer startAge=null;
+		Integer endAge=null;
+		if(age!=null){
+			startAge = age-5;
+			endAge = age+5;
+		}
+		List<GiftCategory> li = giftDAO.getGiftCategory(null, startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
+		
+		if(li==null){
+			LOG.info("Categories were null");
+			mv.addObject("asinDetailList", new ArrayList<GiftAsinDetail>());
+			return;
+		}
+		
+		LOG.info(li);
 		List<String> asinList = extractAsinList(li);
 		List<GiftAsinDetail> asinDetailList = giftDAO.getAsinDetailListByAsin(asinList);
 		
-		System.out.println(asinDetailList);
+		if(asinDetailList==null){
+			mv.addObject("asinDetailList", new ArrayList<GiftAsinDetail>());
+			return;
+		}
+		
+		mv.addObject("asinDetailList", asinDetailList);
+		
+		LOG.info(asinDetailList);
 		
 	}
 	

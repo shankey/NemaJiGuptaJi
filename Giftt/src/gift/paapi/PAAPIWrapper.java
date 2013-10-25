@@ -21,6 +21,7 @@
 
 package gift.paapi;
 
+import gift.bao.CategoryDetailBAO;
 import gift.model.GiftAsinDetail;
 
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -42,6 +44,8 @@ import org.w3c.dom.NodeList;
  * configuring and running the sample.
  */
 public class PAAPIWrapper {
+	
+	private static Logger LOG = Logger.getLogger(PAAPIWrapper.class);
     /*
      * Your AWS Access Key ID, as taken from the AWS Your Account page.
      */
@@ -87,7 +91,7 @@ public class PAAPIWrapper {
         try {
             helper = SignedRequestsHelper.getInstance(ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_KEY);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(" ",e);
             return;
         }
 
@@ -107,7 +111,7 @@ public class PAAPIWrapper {
 		
 		String queryString = "Service=AWSECommerceService&AssociateTag=taqa&Condition=New&IdType=ASIN&ItemId="+asin+"&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&Version=";
 		String requestUrl = helper.sign(queryString);
-		System.out.println("Request is \"" + requestUrl + "\"");
+		LOG.info("Request is \"" + requestUrl + "\"");
 		
 		GiftAsinDetail asinDetail = new GiftAsinDetail();
 		parseXML(asin, requestUrl, asinDetail);
@@ -129,11 +133,11 @@ public class PAAPIWrapper {
             Node item = nodeList.item(0).getChildNodes().item(1).getChildNodes().item(1);
             NodeList itemNodes = item.getChildNodes();
             String detailPageURL = itemNodes.item(1).getTextContent();
-            System.out.println(detailPageURL);
+            LOG.info(detailPageURL);
             asinDetail.setAsin(asin);
             asinDetail.setDetailPage(detailPageURL);
             String imgURL = itemNodes.item(5).getChildNodes().item(0).getTextContent();
-            System.out.println(imgURL);
+            LOG.info(imgURL);
             asinDetail.setImage(imgURL);
             String productTitle = itemNodes.item(7).getChildNodes().item(18).getTextContent();
             asinDetail.setTitle(productTitle);
@@ -141,22 +145,22 @@ public class PAAPIWrapper {
             NodeList offerList = offer.getChildNodes();
             
             String price = offerList.item(0).getChildNodes().item(2).getTextContent();
-            System.out.println(price);
+            LOG.info(price);
             asinDetail.setPrice(Float.parseFloat(price.substring(1)));
           
             
         } catch (Exception e) {
-        	e.printStackTrace();
+        	LOG.error(" ",e);
             //throw new RuntimeException(e);
         }
         return asinDetail;
     }
     
     public static void recurse(NodeList root){
-    	System.out.println(root.getLength());
+    	LOG.info(root.getLength());
     	
     	for(int i=0; i<root.getLength() ; i++){
-    		System.out.println(root.item(i).getNodeName() + "-->" +root.item(i).getTextContent() + ":-->" + root.item(i).getNodeType());
+    		LOG.info(root.item(i).getNodeName() + "-->" +root.item(i).getTextContent() + ":-->" + root.item(i).getNodeType());
     		recurse(root.item(i).getChildNodes());
     	}
     	

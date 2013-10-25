@@ -21,12 +21,15 @@
 
 package gift.paapi;
 
+import gift.bao.CategoryDetailBAO;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -40,6 +43,8 @@ import org.w3c.dom.NodeList;
  * configuring and running the sample.
  */
 public class ItemLookupSample {
+	
+	private static Logger LOG = Logger.getLogger(ItemLookupSample.class);
     /*
      * Your AWS Access Key ID, as taken from the AWS Your Account page.
      */
@@ -80,7 +85,7 @@ public class ItemLookupSample {
         try {
             helper = SignedRequestsHelper.getInstance(ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_KEY);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(" ",e);
             return;
         }
         
@@ -92,7 +97,7 @@ public class ItemLookupSample {
         /*
          * Here is an example in map form, where the request parameters are stored in a map.
          */
-        /*System.out.println("Map form example:");
+        /*LOG.info("Map form example:");
         Map<String, String> params = new HashMap<String, String>();
         params.put("Service", "AWSECommerceService");
         params.put("Version", "2011-08-01");
@@ -103,18 +108,18 @@ public class ItemLookupSample {
         
 
         /*requestUrl = helper.sign(params);
-        System.out.println("Signed Request is \"" + requestUrl + "\"");
+        LOG.info("Signed Request is \"" + requestUrl + "\"");
 
         title = fetchTitle(requestUrl);
-        System.out.println("Signed Title is \"" + title + "\"");
-        System.out.println();*/
+        LOG.info("Signed Title is \"" + title + "\"");
+        LOG.info();*/
 
         /* Here is an example with string form, where the requests parameters have already been concatenated
          * into a query string. */
-        System.out.println("String form example:");
+        LOG.info("String form example:");
         String queryString = "Service=AWSECommerceService&AssociateTag=taqa&Condition=New&IdType=ASIN&ItemId=B002DQLGHU&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&Version=";
         requestUrl = helper.sign(queryString);
-        System.out.println("Request is \"" + requestUrl + "\"");
+        LOG.info("Request is \"" + requestUrl + "\"");
 
         title = parseXML(requestUrl);
         
@@ -137,9 +142,9 @@ public class ItemLookupSample {
             Node item = nodeList.item(0).getChildNodes().item(1).getChildNodes().item(1);
             NodeList itemNodes = item.getChildNodes();
             String detailPageURL = itemNodes.item(1).getTextContent();
-            System.out.println(detailPageURL);
+            LOG.info(detailPageURL);
             String imgURL = itemNodes.item(5).getChildNodes().item(0).getTextContent();
-            System.out.println(imgURL);
+            LOG.info(imgURL);
             
             String productTitle = itemNodes.item(7).getChildNodes().item(18).getTextContent();
             
@@ -147,21 +152,21 @@ public class ItemLookupSample {
             NodeList offerList = offer.getChildNodes();
             
             String price = offerList.item(0).getChildNodes().item(2).getTextContent();
-            System.out.println(price);
+            LOG.info(price);
             
             
         } catch (Exception e) {
-        	e.printStackTrace();
+        	LOG.error(" ",e);
             throw new RuntimeException(e);
         }
         return title;
     }
     
     public static void recurse(NodeList root){
-    	System.out.println(root.getLength());
+    	LOG.info(root.getLength());
     	
     	for(int i=0; i<root.getLength() ; i++){
-    		System.out.println(root.item(i).getNodeName() + "-->" +root.item(i).getTextContent() + ":-->" + root.item(i).getNodeType());
+    		LOG.info(root.item(i).getNodeName() + "-->" +root.item(i).getTextContent() + ":-->" + root.item(i).getNodeType());
     		recurse(root.item(i).getChildNodes());
     	}
     	
