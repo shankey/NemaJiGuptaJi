@@ -9,9 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles --Aditya    -->
     <link href="./css/bootstrap.css" type="text/css"  rel="stylesheet">
-    <link href="./css/bootstrap-responsive.css" type="text/css"  rel="stylesheet">
     <link href="./css/gift.css" type="text/css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
