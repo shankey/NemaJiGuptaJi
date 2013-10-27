@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,11 +8,13 @@
 </head>
 <body>
 
-<h1>We are creating a String</h1>
-    <%
+	<h1>We are creating a String</h1>
+	<%
         String create = "We have created a String " + System.currentTimeMillis();
 		%>
-        <h2><%out.println(create);%></h2>
+	<h2>
+		<%out.println(create);%>
+	</h2>
 
 </body>
 </html>
