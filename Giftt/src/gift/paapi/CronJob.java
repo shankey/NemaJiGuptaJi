@@ -41,6 +41,7 @@ public class CronJob extends TimerTask {
 				
 				dao.saveGiftAsinDetail(asinDetail);
 				dao.updateAsinCategoryTimeStamp(gc);
+				Thread.sleep(1000);
 				
 			}
 			if(li.size()==0){
