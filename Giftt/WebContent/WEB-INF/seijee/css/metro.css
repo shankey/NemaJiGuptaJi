@@ -46,7 +46,6 @@
 	position: absolute;
 	bottom: 0%; left: 0px; right: 0px;
 	height: .8em;
-	text-align: center;
 }
 
 .tile-padding {
@@ -85,7 +84,7 @@
 	content: '';
 }
 
-.anchor{display: block; position: relative; top: -100px; visibility: hidden;}
+.anchor{display: block; position: relative; top: -32px; visibility: hidden;}
 
 
 .affix-top{
@@ -97,8 +96,40 @@
 	left:0px; right: 0px; top:-120px;
 }
 
+#main-nav {
+	background-color: #222222;
+	padding-left: 4%;
+	padding-right: 4%;
+	margin: 0px;
+}
 
-.open > .search {
-	background-color: #269abc;
-	position: absolute;
+#search.closed {
+	min-height: 0px;
+	height: 0px;
+	overflow: hidden;
+	background-color: #dddddd;
+	-webkit-transition: all 0.2s ease-in-out;
+	   -moz-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+}
+
+#search.open{
+	height: 122px;
+	overflow: hidden;
+	-webkit-transition: all 0.2s ease-in-out;
+	   -moz-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+}
+
+div.form-group  {
+	padding: 0px 2px;
+}
+.form-group .form-control {
+	border: 0px;
+}
+
+body ::selection{
+	color: inherit;
 }

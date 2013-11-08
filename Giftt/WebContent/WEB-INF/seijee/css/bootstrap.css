@@ -4051,8 +4051,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse {
 	color: #ffffff;
   background-color: #222222;
-  background-image: url("http://c.tadst.com/gfx/600x400/christmas.jpg");
   border-color: #080808;
+}
+
+.navbar-inverse .inner{
+	background-image: url("http://c.tadst.com/gfx/600x400/christmas.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 .navbar-inverse .navbar-brand {
   color: #dddddd;
