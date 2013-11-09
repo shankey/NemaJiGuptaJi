@@ -266,7 +266,8 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Segoe UI Light", "Helvetica Neue", "Segoe UI", "Segoe WP", sans-serif;
+  /*font-family: "Segoe UI Light", "Helvetica Neue", "Segoe UI", "Segoe WP", sans-serif;*/
+  font-family: Arial,Helvetica,sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -411,7 +412,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Segoe UI Light", "Helvetica Neue", "Segoe UI", "Segoe WP", sans-serif;
+  /*font-family: "Segoe UI Light", "Helvetica Neue", "Segoe UI", "Segoe WP", sans-serif;*/
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -2082,7 +2083,7 @@ fieldset[disabled] .btn-danger.active {
 }
 .btn-success {
   color: #ffffff;
-  background-color: #5cb85c;
+  background-color: #005C04;
   border-color: #4cae4c;
 }
 .btn-success:hover,
@@ -2091,7 +2092,7 @@ fieldset[disabled] .btn-danger.active {
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
   color: #ffffff;
-  background-color: #47a447;
+  background-color: #005C04;
   border-color: #398439;
 }
 .btn-success:active,
@@ -4051,8 +4052,17 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse {
 	color: #ffffff;
   background-color: #222222;
-  background-image: url("http://c.tadst.com/gfx/600x400/christmas.jpg");
   border-color: #080808;
+}
+
+.navbar-inverse .inner{
+	/*background-image: url("../img/leaderboard/christmas.jpg");*/
+	/*background-image:url("https://lh4.googleusercontent.com/-uevlEm7JvTw/TvYpq00uyNI/AAAAAAAAAQY/DrhAdIevyaI/w800-h800/merry_christmas_2012-wide.jpg");*/
+	background-position:  0% 62%;
+	background-color: whitesmoke;
+	background-size: cover;
+	background-repeat: no-repeat;
+	box-shadow: 0px 2px 10px 0px #000000;
 }
 .navbar-inverse .navbar-brand {
   color: #dddddd;
