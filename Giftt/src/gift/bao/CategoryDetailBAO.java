@@ -33,7 +33,8 @@ public class CategoryDetailBAO {
 			startAge = age-5;
 			endAge = age+5;
 		}
-		List<GiftCategory> li = giftDAO.getGiftCategory(null, startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
+		List<String> li = giftDAO.paginatedgetAsinFromGiftCategory(startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
+				//getGiftCategory(null, startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
 		
 		if(li==null){
 			LOG.info("Categories were null");
@@ -42,8 +43,7 @@ public class CategoryDetailBAO {
 		}
 		
 		LOG.info(li);
-		List<String> asinList = extractAsinList(li);
-		List<GiftAsinDetail> asinDetailList = giftDAO.getAsinDetailListByAsin(asinList);
+		List<GiftAsinDetail> asinDetailList = giftDAO.getAsinDetailListByAsin(li);
 		
 		if(asinDetailList==null){
 			mv.addObject("asinDetailList", new ArrayList<GiftAsinDetail>());

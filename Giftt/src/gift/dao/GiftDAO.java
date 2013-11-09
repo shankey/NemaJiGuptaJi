@@ -1,17 +1,17 @@
 package gift.dao;
 
-import gift.bao.CategoryDetailBAO;
 import gift.factory.HibernateUtil;
 import gift.model.GiftAsinDetail;
 import gift.model.GiftCategory;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
@@ -20,6 +20,61 @@ import org.hibernate.criterion.Restrictions;
 public class GiftDAO {
 	
 	private static Logger LOG = Logger.getLogger(GiftDAO.class);
+	
+	@SuppressWarnings("unchecked")
+	public List<String> paginatedgetAsinFromGiftCategory(Integer startAge, Integer endAge,
+			String gender, String occasion, String relation, Float startPrice, Float endPrice)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			String query = "select distinct ASIn, PRIORITY from VIEW_ASIN_COMPLETE where 1=1";
+			
+			if(startAge!=null && endAge!=null){
+				query += " and AGE > "+startAge+ " and AGE < " + endAge;
+			}
+			
+			if(gender!=null){
+				query += " and GENDER = "+gender;
+			}
+			
+			if(occasion!=null){
+				query += " and OCCASION = "+occasion;
+			}
+			
+			if(relation!=null){
+				query += " and RELATION = "+relation;
+			}
+			
+			if(startPrice!=null && endPrice!=null){
+				query += " and PRICE > "+startPrice+ " and PRICE < " + endPrice;
+			}
+			
+			query+= " order by PRIORITY;";
+			
+			SQLQuery cr = session.createSQLQuery(query);
+			
+			List<Object[]> result = cr.list();
+			List<String> asinResult = new ArrayList<String>();
+			for(Object[] obj : result){
+				asinResult.add((String)obj[0]);
+				LOG.info(obj[0] + " -> " + obj[1]);
+			}
+			
+
+			transaction.commit();
+			
+			return asinResult;
+			
+		} catch (HibernateException e) {
+			transaction.rollback();
+			LOG.error(" ",e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<GiftCategory> getGiftCategory(String asin, Integer startAge, Integer endAge,

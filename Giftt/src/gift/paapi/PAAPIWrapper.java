@@ -102,9 +102,7 @@ public class PAAPIWrapper {
 	}
 
 	public static void main(String[] args) {
-        /*
-         * Set up the signed requests helper 
-         */
+        new PAAPIWrapper().callPAAPI("B00D9EPI38");
     }
 	
 	public GiftAsinDetail callPAAPI(String asin){
@@ -115,6 +113,7 @@ public class PAAPIWrapper {
 		
 		GiftAsinDetail asinDetail = new GiftAsinDetail();
 		parseXML(asin, requestUrl, asinDetail);
+		LOG.info("ASIN details are : "+asinDetail);
 		return asinDetail;
 	}
 
@@ -130,7 +129,26 @@ public class PAAPIWrapper {
             
             NodeList nodeList = doc.getChildNodes();
             
-            Node item = nodeList.item(0).getChildNodes().item(1).getChildNodes().item(1);
+            Node root = getNode("ItemLookupResponse", nodeList);
+            Node items = getNode("Items", root.getChildNodes());
+            Node item = getNode("Item", items.getChildNodes());
+            Node detailPageUrl = getNode("DetailPageURL", item.getChildNodes());
+            Node largeImage = getNode("LargeImage", item.getChildNodes());
+            Node url = getNode("URL", largeImage.getChildNodes());
+            Node itemAttributes = getNode("ItemAttributes", item.getChildNodes());
+            Node title = getNode("Title", itemAttributes.getChildNodes());
+            Node offerSummary = getNode("OfferSummary", item.getChildNodes());
+            Node lowestNewPrice = getNode("LowestNewPrice", offerSummary.getChildNodes());
+            Node formattedPrice = getNode("FormattedPrice", lowestNewPrice.getChildNodes());
+            
+            asinDetail.setAsin(asin);
+            asinDetail.setDetailPage(detailPageUrl.getTextContent());
+            asinDetail.setImage(url.getTextContent());
+            asinDetail.setPrice(Float.parseFloat(formattedPrice.getTextContent().substring(1)));
+            asinDetail.setTitle(title.getTextContent());
+            
+            
+            /*Node item = nodeList.item(0).getChildNodes().item(1).getChildNodes().item(1);
             NodeList itemNodes = item.getChildNodes();
             String detailPageURL = itemNodes.item(1).getTextContent();
             LOG.info(detailPageURL);
@@ -146,7 +164,7 @@ public class PAAPIWrapper {
             
             String price = offerList.item(0).getChildNodes().item(2).getTextContent();
             LOG.info(price);
-            asinDetail.setPrice(Float.parseFloat(price.substring(1)));
+            asinDetail.setPrice(Float.parseFloat(price.substring(1)));*/
           
             
         } catch (Exception e) {
@@ -154,6 +172,17 @@ public class PAAPIWrapper {
             //throw new RuntimeException(e);
         }
         return asinDetail;
+    }
+    
+    public Node getNode(String nodeName, NodeList nodeList){
+    	for(int i=0; i<nodeList.getLength(); i++){
+    		String node = nodeList.item(i).getNodeName();
+    		if(node.equals(nodeName)){
+    			LOG.info(node);
+    			return nodeList.item(i);
+    		}
+    	}
+    	return null;
     }
     
     public static void recurse(NodeList root){
