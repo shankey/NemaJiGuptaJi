@@ -12,7 +12,23 @@ public class DetailPageBean {
 	String occasion;
 	String gender;
 	String relation;
+	Integer firstResult;
+	Integer maxResults;
 	
+	
+	
+	public Integer getFirstResult() {
+		return firstResult;
+	}
+	public void setFirstResult(Integer firstResult) {
+		this.firstResult = firstResult;
+	}
+	public Integer getMaxResults() {
+		return maxResults;
+	}
+	public void setMaxResults(Integer maxResults) {
+		this.maxResults = maxResults;
+	}
 	public Integer getAge() {
 		return age;
 	}

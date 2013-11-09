@@ -23,7 +23,7 @@ public class GiftDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<String> paginatedgetAsinFromGiftCategory(Integer startAge, Integer endAge,
-			String gender, String occasion, String relation, Float startPrice, Float endPrice)
+			String gender, String occasion, String relation, Float startPrice, Float endPrice, Integer firstResult, Integer maxResults)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -54,6 +54,8 @@ public class GiftDAO {
 			query+= " order by PRIORITY;";
 			
 			SQLQuery cr = session.createSQLQuery(query);
+			cr.setMaxResults(maxResults);
+			cr.setFirstResult(firstResult);
 			
 			List<Object[]> result = cr.list();
 			List<String> asinResult = new ArrayList<String>();

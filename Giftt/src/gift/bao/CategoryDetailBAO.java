@@ -29,11 +29,20 @@ public class CategoryDetailBAO {
 		Integer age = bean.getAge();
 		Integer startAge=null;
 		Integer endAge=null;
+		Integer firstResult = bean.getFirstResult();
+		Integer maxResults = bean.getMaxResults();
+		
+		if(firstResult==null || maxResults==null){
+			firstResult=0;
+			maxResults=20;
+		}
+		
 		if(age!=null){
 			startAge = age-5;
 			endAge = age+5;
 		}
-		List<String> li = giftDAO.paginatedgetAsinFromGiftCategory(startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
+		
+		List<String> li = giftDAO.paginatedgetAsinFromGiftCategory(startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice(), firstResult, maxResults);
 				//getGiftCategory(null, startAge, endAge, bean.getGender(), bean.getOccasion(), bean.getRelation(), bean.getStartPrice(), bean.getEndPrice());
 		
 		if(li==null){
