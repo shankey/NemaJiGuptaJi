@@ -37,7 +37,7 @@
 .tile > .image {
 	position: absolute;
 	top: 5px; left: 5px; right: 5px; bottom: 20%;
-	*background: grey;
+	/*background: grey;*/
 	background-position: center;
 	background-size:contain;
 	background-repeat: no-repeat;
@@ -93,11 +93,16 @@
 .affix{
 	z-index: 1000;
 	position: fixed;
-	left:0px; right: 0px; top:-120px;
+	left:0px; right: 0px; top:-90px;
 }
 
 #main-nav {
-	background-color: #222222;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	
+	background-image: url("../img/Fabric007.jpg");
+	background-repeat: repeat-x;
+	background-size: auto 100%;
 	padding-left: 4%;
 	padding-right: 4%;
 	margin: 0px;
@@ -121,6 +126,8 @@
 	   -moz-transition: all 0.2s ease-in-out;
          -o-transition: all 0.2s ease-in-out;
             transition: all 0.2s ease-in-out;
+			
+	 box-shadow: 0px 10px 30px 1px #000000;
 }
 
 div.form-group  {
