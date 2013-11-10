@@ -51,7 +51,7 @@ public class GiftDAO {
 				query += " and PRICE > "+startPrice+ " and PRICE < " + endPrice;
 			}
 			
-			query+= " order by PRIORITY;";
+			query+= " order by PRIORITY";
 			
 			SQLQuery cr = session.createSQLQuery(query);
 			cr.setMaxResults(maxResults);
