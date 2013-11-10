@@ -15,87 +15,22 @@
 						</div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
+								<c:forEach var="entry" items="${topNav}">
 								<li class="dropdown">
-									<a href="" class="dropdown-toggle js-activated" data-toggle="dropdown">Men <b class="caret"></b></a>
+									<a href="" class="dropdown-toggle js-activated" data-toggle="dropdown">${entry.categoryName} <b class="caret"></b></a>
 									<div class="dropdown-menu">
+										<c:forEach var="subEntry" items="${entry.subCategory}">
 										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="result.jsp">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
+											<li class="dropdown-header">Heading</li>
+											<c:forEach var="value" items="${subEntry}">
+											<li><a href="result.jsp"><c:out value="${value}"></c:out></a></li>
+											</c:foreach>
 										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
+										</c:foreach>
 									</div>
 								</li>
-
-
-								<li class="dropdown">
-									<a href="" class="dropdown-toggle js-activated" data-toggle="dropdown">Women <b class="caret"></b></a>
-									<div class="dropdown-menu">
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="result.jsp">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-									</div>
-								</li>
-
-								<li class="dropdown">
-									<a href="" class="dropdown-toggle js-activated" data-toggle="dropdown">Occasions <b class="caret"></b></a>
-									<div class="dropdown-menu">
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="result.jsp">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-										<ul class="col-xs-4">
-											<li class="dropdown-header">Nav header</li>
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-										</ul>
-									</div>
-								</li>
+								</c:foreach>
+								
 								<li onclick="search() "><a>Custom Search</a></li>
 
 							</ul>
